@@ -17,7 +17,6 @@ namespace Paluwagan.Application.Features.Groups.Commands
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserContextService _userContext;
 
-
         public CreateGroupCommandHandler(IUnitOfWork unitOfWork, IUserContextService userContext)
         {
             _unitOfWork = unitOfWork;
