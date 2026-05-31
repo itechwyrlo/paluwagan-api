@@ -37,6 +37,7 @@ jobs:
           $computerName = "https://${{ secrets.SITE_HOST }}:8172/msdeploy.axd?site=$siteName"
 
           $sourceArg = "-source:contentPath=$publishPath"
-          $destArg = "-dest:contentPath=$siteName,computerName=$computerName,userName=$siteName,password=$password,authType=Basic"
+          $username = '${{ secrets.WEBDEPLOY_USERNAME }}'
+          $destArg = "-dest:contentPath=$siteName,computerName=$computerName,userName=$username,password=$password,authType=Basic"
 
           & $msdeploy -verb:sync $sourceArg $destArg -allowUntrusted -enableRule:AppOffline
