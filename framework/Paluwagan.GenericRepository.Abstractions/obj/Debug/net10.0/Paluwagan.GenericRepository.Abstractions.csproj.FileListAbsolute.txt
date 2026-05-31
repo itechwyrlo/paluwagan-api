@@ -1,0 +1,16 @@
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\bin\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.deps.json
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\bin\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\bin\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.pdb
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\bin\Debug\net10.0\Paluwagan.SharedKernel.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\bin\Debug\net10.0\Paluwagan.SharedKernel.pdb
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.csproj.AssemblyReference.cache
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.AssemblyInfoInputs.cache
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.AssemblyInfo.cs
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.csproj.CoreCompileInputs.cache
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwaga.B36098AC.Up2Date
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\refint\Paluwagan.GenericRepository.Abstractions.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.pdb
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\ref\Paluwagan.GenericRepository.Abstractions.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.GenericRepository.Abstractions\obj\Debug\net10.0\Paluwagan.GenericRepository.Abstractions.sourcelink.json

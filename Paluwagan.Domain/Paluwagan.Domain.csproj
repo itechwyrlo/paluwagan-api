@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Paluwagan.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\framework\Paluwagan.SharedKernel\Paluwagan.SharedKernel.csproj" />
+    <ProjectReference Include="..\framework\Paluwagan.GenericRepository.Abstractions\Paluwagan.GenericRepository.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

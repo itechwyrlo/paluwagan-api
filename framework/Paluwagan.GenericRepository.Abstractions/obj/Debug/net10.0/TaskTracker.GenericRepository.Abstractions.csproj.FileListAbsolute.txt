@@ -1,0 +1,15 @@
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\bin\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.deps.json
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\bin\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.dll
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\bin\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.pdb
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\bin\Debug\net10.0\TaskTracker.SharedKernel.dll
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\bin\Debug\net10.0\TaskTracker.SharedKernel.pdb
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.csproj.AssemblyReference.cache
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.AssemblyInfoInputs.cache
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.AssemblyInfo.cs
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.csproj.CoreCompileInputs.cache
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTrac.B113F0B7.Up2Date
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.dll
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\refint\TaskTracker.GenericRepository.Abstractions.dll
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\TaskTracker.GenericRepository.Abstractions.pdb
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.GenericRepository.Abstractions\obj\Debug\net10.0\ref\TaskTracker.GenericRepository.Abstractions.dll

@@ -1,0 +1,11 @@
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\bin\Debug\net10.0\TaskTracker.SharedKernel.deps.json
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\bin\Debug\net10.0\TaskTracker.SharedKernel.dll
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\bin\Debug\net10.0\TaskTracker.SharedKernel.pdb
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\TaskTracker.SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\TaskTracker.SharedKernel.AssemblyInfoInputs.cache
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\TaskTracker.SharedKernel.AssemblyInfo.cs
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\TaskTracker.SharedKernel.csproj.CoreCompileInputs.cache
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\TaskTracker.SharedKernel.dll
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\refint\TaskTracker.SharedKernel.dll
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\TaskTracker.SharedKernel.pdb
+c:\Users\Wyrlo\projects\TaskTracker\src\framework\TaskTracker.SharedKernel\obj\Debug\net10.0\ref\TaskTracker.SharedKernel.dll

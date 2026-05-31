@@ -1,0 +1,13 @@
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\bin\Debug\net10.0\Paluwagan.SharedKernel.deps.json
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\bin\Debug\net10.0\Paluwagan.SharedKernel.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\bin\Debug\net10.0\Paluwagan.SharedKernel.pdb
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.AssemblyInfoInputs.cache
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.AssemblyInfo.cs
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.csproj.CoreCompileInputs.cache
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\refint\Paluwagan.SharedKernel.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.pdb
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\ref\Paluwagan.SharedKernel.dll
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.csproj.AssemblyReference.cache
+C:\Users\Wyrlo\projects\paluwagan-api\framework\Paluwagan.SharedKernel\obj\Debug\net10.0\Paluwagan.SharedKernel.sourcelink.json

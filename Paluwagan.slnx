@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/framework/">
+    <Project Path="framework/Paluwagan.GenericRepository.Abstractions/Paluwagan.GenericRepository.Abstractions.csproj" />
+    <Project Path="framework/Paluwagan.GenericRepository.EntityFramework/Paluwagan.GenericRepository.EntityFramework.csproj" />
+    <Project Path="framework/Paluwagan.SharedKernel/Paluwagan.SharedKernel.csproj" />
+  </Folder>
+  <Project Path="Paluwagan.API/Paluwagan.API.csproj" />
+  <Project Path="Paluwagan.Application/Paluwagan.Application.csproj" />
+  <Project Path="Paluwagan.Domain/Paluwagan.Domain.csproj" />
+  <Project Path="Paluwagan.Infrastructure/Paluwagan.Infrastructure.csproj" />
+  <Project Path="Paluwagan.Persistence/Paluwagan.Persistence.csproj" />
+</Solution>
