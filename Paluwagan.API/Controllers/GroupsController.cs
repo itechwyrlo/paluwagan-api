@@ -96,5 +96,13 @@ namespace Paluwagan.API.Controllers
             await _mediator.Send(new AddMemberCommand(groupId, request.AccountId, request.SlotNumber), ct);
             return NoContent();
         }
+
+        [HttpPatch("{groupId:guid}/payments/{memberId:guid}")]
+        [Authorize(Policy = Policies.OrganizerOnly)]
+        public async Task<IActionResult> MarkPaymentAsPaid(Guid groupId, Guid memberId, [FromBody] MarkPaymentPaidRequest request, CancellationToken ct)
+        {
+            var result = await _mediator.Send(new MarkPaymentAsPaidCommand(groupId, memberId, request.Round), ct);
+            return Ok(result);
+        }
     }
 }

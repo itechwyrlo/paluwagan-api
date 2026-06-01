@@ -117,6 +117,17 @@ namespace Paluwagan.Domain.Entities
                 _payments.Add(new Payment(Id, member.UserId, CurrentRound));
         }
 
+        public void MarkPaymentAsPaid(Guid requestingUserId, Guid memberId, int round)
+        {
+            if (requestingUserId != OrganizerId)
+                throw new BusinessRuleBrokenException("Only the organizer can mark payments as paid.");
+
+            var payment = _payments.FirstOrDefault(p => p.MemberId == memberId && p.Round == round)
+                ?? throw new BusinessRuleBrokenException("Payment not found for this member and round.");
+
+            payment.MarkAsPaid();
+        }
+
         public void Cancel()
         {
             if (Status == GroupStatus.Completed)
