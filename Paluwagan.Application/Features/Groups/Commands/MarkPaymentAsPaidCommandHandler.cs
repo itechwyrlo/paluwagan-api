@@ -5,6 +5,7 @@ using Paluwagan.Application.DTOs;
 using Paluwagan.Application.Messaging.Abstractions;
 using Paluwagan.Domain;
 using Paluwagan.Domain.Services;
+using Paluwagan.Domain.ValueObjects;
 using Paluwagan.SharedKernel.Exceptions;
 
 namespace Paluwagan.Application.Features.Groups.Commands
@@ -17,7 +18,7 @@ namespace Paluwagan.Application.Features.Groups.Commands
             var organizerId = userContext.GetCurrentUserId();
 
             var group = await unitOfWork.GroupRepository
-                .GetByIdWithDetailsAsync(command.GroupId)
+                .GetByIdWithDetailsAsync(new GroupId(command.GroupId))
                 .ConfigureAwait(false)
                 ?? throw new NotFoundException($"Group {command.GroupId} was not found.");
 
