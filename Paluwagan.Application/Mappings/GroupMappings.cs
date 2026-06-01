@@ -24,7 +24,7 @@ namespace Paluwagan.Application.Mappings
                     .Count(p => p.Round == group.CurrentRound && p.IsPaid)
             };
 
-        public static GroupDetailResponse ToGroupDetail(this Group group) =>
+        public static GroupDetailResponse ToGroupDetail(this Group group, ApplicationUser organizer) =>
             new(
                 Id: group.Id.Value.ToString(),
                 Name: group.Name,
@@ -33,6 +33,8 @@ namespace Paluwagan.Application.Mappings
                 NumberOfSlots: group.NumberOfSlots,
                 CurrentRound: group.CurrentRound,
                 OrganizerId: group.OrganizerId.ToString(),
+                OrganizerGCashNumber: organizer.GCashNumber,
+                OrganizerMayaNumber: organizer.MayaNumber,
                 StartDate: group.StartDate,
                 Status: group.Status,
                 PaidCount: group.Payments.Count(p => p.Round == group.CurrentRound && p.IsPaid),

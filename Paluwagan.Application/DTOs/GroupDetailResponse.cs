@@ -10,6 +10,8 @@ namespace Paluwagan.Application.DTOs
         int NumberOfSlots,
         int CurrentRound,
         string OrganizerId,
+        string? OrganizerGCashNumber,
+        string? OrganizerMayaNumber,
         DateTime StartDate,
         GroupStatus Status,
         int PaidCount,

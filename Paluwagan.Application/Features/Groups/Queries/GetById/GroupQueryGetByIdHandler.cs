@@ -21,7 +21,12 @@ namespace Paluwagan.Application.Features.Groups.Queries.GetById
                 .ConfigureAwait(false)
                 ?? throw new NotFoundException($"Group {request.groupId} was not found.");
 
-            return group.ToGroupDetail();
+            var organizer = await unitOfWork.UserRepository
+                .GetByIdAsync(group.OrganizerId)
+                .ConfigureAwait(false)
+                ?? throw new NotFoundException($"Organizer for group {request.groupId} was not found.");
+
+            return group.ToGroupDetail(organizer);
         }
     }
 }
