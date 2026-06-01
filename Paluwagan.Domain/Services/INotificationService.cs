@@ -11,5 +11,11 @@ namespace Paluwagan.Domain.Services
             string messagePreview,
             string groupId,
             CancellationToken cancellationToken = default);
+
+        Task SendPaymentPaidNotificationAsync(
+            string fcmToken,
+            string groupName,
+            int round,
+            CancellationToken cancellationToken = default);
     }
 }
