@@ -13,9 +13,11 @@ public class UnitOfWork : IUnitOfWork, IAsyncDisposable
 
     private readonly Lazy<IUserRepository> _userRepository;
     private readonly Lazy<IGroupRepository> _groupRepository;
+    private readonly Lazy<IMessageRepository> _messageRepository;
 
     public IUserRepository UserRepository => _userRepository.Value;
     public IGroupRepository GroupRepository => _groupRepository.Value;
+    public IMessageRepository MessageRepository => _messageRepository.Value;
     public UserManager<ApplicationUser> UserManager { get; }
     public RoleManager<IdentityRole<Guid>> RoleManager { get; }
 
@@ -27,6 +29,7 @@ public class UnitOfWork : IUnitOfWork, IAsyncDisposable
 
         _userRepository = new Lazy<IUserRepository>(() => new UserRepository(_context, UserManager));
         _groupRepository = new Lazy<IGroupRepository>(() => new GroupRepository(_context));
+        _messageRepository = new Lazy<IMessageRepository>(() => new MessageRepository(_context));
     }
 
     public async Task<int> CompleteAsync()

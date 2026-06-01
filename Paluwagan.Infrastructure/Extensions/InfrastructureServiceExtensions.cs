@@ -20,10 +20,13 @@ public static class InfrastructureServiceExtensions
 
         services.AddHttpClient("Supabase");
 
+        services.AddSignalR();
+
         services.AddScoped<ITokenService, JwtTokenService>();
         services.AddScoped<ICookieService, CookieService>();
         services.AddScoped<IUserContextService, UserContextService>();
         services.AddScoped<IStorageService, SupabaseStorageService>();
+        services.AddScoped<IChatNotifier, SignalRChatNotifier>();
 
         return services;
     }

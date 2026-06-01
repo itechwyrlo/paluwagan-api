@@ -1,5 +1,6 @@
 ﻿using Paluwagan.Application.Extensions;
 using Paluwagan.Infrastructure.Extensions;
+using Paluwagan.Infrastructure.Hubs;
 using Paluwagan.Persistence.Extensions;
 using Paluwagan.API.Infrastructure.Exceptions;
 using Paluwagan.API.Configurations;
@@ -37,5 +38,6 @@ app.UseCors(CorsConfiguration.PolicyName);
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<ChatHub>("/hubs/chat");
 
 app.Run();
