@@ -1,0 +1,15 @@
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Paluwagan.Domain.Services
+{
+    public interface INotificationService
+    {
+        Task SendMessageNotificationAsync(
+            string fcmToken,
+            string senderName,
+            string messagePreview,
+            string groupId,
+            CancellationToken cancellationToken = default);
+    }
+}

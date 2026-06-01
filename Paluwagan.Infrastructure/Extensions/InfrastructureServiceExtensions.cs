@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Paluwagan.Domain.Services;
 using Paluwagan.Infrastructure.Configurations;
@@ -14,6 +16,7 @@ public static class InfrastructureServiceExtensions
     {
         services.Configure<SecurityOptions>(configuration.GetSection("SecurityOptions"));
         services.Configure<SupabaseOptions>(configuration.GetSection("Supabase"));
+        services.Configure<FirebaseOptions>(configuration.GetSection(FirebaseOptions.Section));
 
         services.AddMemoryCache();
         services.AddHttpContextAccessor();
@@ -27,6 +30,22 @@ public static class InfrastructureServiceExtensions
         services.AddScoped<IUserContextService, UserContextService>();
         services.AddScoped<IStorageService, SupabaseStorageService>();
         services.AddScoped<IChatNotifier, SignalRChatNotifier>();
+        services.AddScoped<INotificationService, FirebaseNotificationService>();
+
+        var serviceAccountPath = configuration
+            .GetSection(FirebaseOptions.Section)
+            .Get<FirebaseOptions>()
+            ?.ServiceAccountPath;
+
+        if (!string.IsNullOrWhiteSpace(serviceAccountPath)
+            && File.Exists(serviceAccountPath)
+            && FirebaseApp.DefaultInstance is null)
+        {
+            FirebaseApp.Create(new AppOptions
+            {
+                Credential = GoogleCredential.FromFile(serviceAccountPath)
+            });
+        }
 
         return services;
     }

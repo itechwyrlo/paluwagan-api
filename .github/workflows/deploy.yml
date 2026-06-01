@@ -27,6 +27,11 @@ jobs:
       - name: Publish
         run: dotnet publish Paluwagan.API/Paluwagan.API.csproj -c Release --no-build -o ./publish
 
+      - name: Write Firebase service account
+        shell: pwsh
+        run: |
+          '${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}' | Out-File -FilePath ./publish/firebase-adminsdk.json -Encoding utf8 -NoNewline
+
       - name: Deploy via Web Deploy
         shell: pwsh
         run: |
