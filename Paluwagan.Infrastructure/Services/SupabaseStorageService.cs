@@ -25,7 +25,12 @@ namespace Paluwagan.Infrastructure.Services
             request.Headers.Add("x-upsert", "true");
 
             var response = await client.SendAsync(request, ct).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+                throw new HttpRequestException($"Supabase upload failed ({response.StatusCode}): {body}");
+            }
 
             return $"{_opts.Url}/storage/v1/object/public/{_opts.BucketName}/{path}";
         }
