@@ -10,7 +10,7 @@ namespace Paluwagan.Infrastructure.Services
 {
     public sealed class FirebaseNotificationService(ILogger<FirebaseNotificationService> logger) : INotificationService
     {
-        public async Task SendPaymentPaidNotificationAsync(
+        public async Task<NotificationSendResult> SendPaymentPaidNotificationAsync(
             string fcmToken,
             string groupName,
             int round,
@@ -37,14 +37,27 @@ namespace Paluwagan.Infrastructure.Services
                 await FirebaseMessaging.DefaultInstance
                     .SendAsync(message, cancellationToken)
                     .ConfigureAwait(false);
+
+                return NotificationSendResult.Sent;
+            }
+            catch (FirebaseMessagingException fex) when (
+                fex.MessagingErrorCode == MessagingErrorCode.Unregistered)
+            {
+                logger.LogWarning(
+                    "FCM token rejected by Firebase (stale/unregistered) for group {GroupName} round {Round}. Token will be cleared.",
+                    groupName, round);
+                return NotificationSendResult.TokenRejected;
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Failed to send payment confirmed notification to token {Token} for group {GroupName} round {Round}.", fcmToken, groupName, round);
+                logger.LogError(ex,
+                    "Failed to send payment confirmed notification for group {GroupName} round {Round}.",
+                    groupName, round);
+                return NotificationSendResult.Failed;
             }
         }
 
-        public async Task SendMessageNotificationAsync(
+        public async Task<NotificationSendResult> SendMessageNotificationAsync(
             string fcmToken,
             string senderName,
             string messagePreview,
@@ -75,10 +88,23 @@ namespace Paluwagan.Infrastructure.Services
                 await FirebaseMessaging.DefaultInstance
                     .SendAsync(message, cancellationToken)
                     .ConfigureAwait(false);
+
+                return NotificationSendResult.Sent;
+            }
+            catch (FirebaseMessagingException fex) when (
+                fex.MessagingErrorCode == MessagingErrorCode.Unregistered)
+            {
+                logger.LogWarning(
+                    "FCM token rejected by Firebase (stale/unregistered) for group {GroupId}. Token will be cleared.",
+                    groupId);
+                return NotificationSendResult.TokenRejected;
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Failed to send FCM notification to token {Token} for group {GroupId}.", fcmToken, groupId);
+                logger.LogError(ex,
+                    "Failed to send FCM message notification for group {GroupId}.",
+                    groupId);
+                return NotificationSendResult.Failed;
             }
         }
     }

@@ -76,6 +76,12 @@ namespace Paluwagan.Domain.Entities
             UpdatedAt = DateTime.UtcNow;
         }
 
+        public void ClearFcmToken()
+        {
+            FcmToken = null;
+            UpdatedAt = DateTime.UtcNow;
+        }
+
         public void PromoteToOrganizer()
         {
             Role = UserRole.Organizer;

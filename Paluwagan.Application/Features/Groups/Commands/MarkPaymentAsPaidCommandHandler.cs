@@ -40,18 +40,47 @@ namespace Paluwagan.Application.Features.Groups.Commands
                     .GetByIdAsync(command.MemberId)
                     .ConfigureAwait(false);
 
-                if (member?.FcmToken is not null)
+                if (member is null)
                 {
-                    await notificationService.SendPaymentPaidNotificationAsync(
+                    logger.LogWarning(
+                        "Push notification skipped: member {MemberId} not found.",
+                        command.MemberId);
+                }
+                else if (member.FcmToken is null)
+                {
+                    logger.LogWarning(
+                        "Push notification skipped: member {MemberId} has no FCM token registered.",
+                        command.MemberId);
+                }
+                else
+                {
+                    var result = await notificationService.SendPaymentPaidNotificationAsync(
                         member.FcmToken,
                         group.Name,
                         command.Round,
                         cancellationToken).ConfigureAwait(false);
+
+                    if (result == NotificationSendResult.TokenRejected)
+                    {
+                        member.ClearFcmToken();
+                        await unitOfWork.CompleteAsync(cancellationToken).ConfigureAwait(false);
+                        logger.LogWarning(
+                            "Stale FCM token cleared for member {MemberId}. They must re-enable notifications.",
+                            command.MemberId);
+                    }
+                    else if (result == NotificationSendResult.Sent)
+                    {
+                        logger.LogInformation(
+                            "Push notification sent to member {MemberId} for payment round {Round} in group {GroupId}.",
+                            command.MemberId, command.Round, command.GroupId);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Failed to send payment confirmed notification for member {MemberId} in group {GroupId}.", command.MemberId, command.GroupId);
+                logger.LogError(ex,
+                    "Unexpected error sending payment notification for member {MemberId} in group {GroupId}.",
+                    command.MemberId, command.GroupId);
             }
 
             return new MarkPaymentAsPaidResponse(payment.MemberId, payment.Round, payment.IsPaid, payment.PaidAt);

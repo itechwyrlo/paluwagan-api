@@ -50,21 +50,48 @@ namespace Paluwagan.Application.Features.Messages.Commands.SendMessage
                     .GetByIdAsync(command.ReceiverId)
                     .ConfigureAwait(false);
 
-                if (receiver?.FcmToken is not null)
+                if (receiver is null)
+                {
+                    logger.LogWarning(
+                        "Push notification skipped: receiver {ReceiverId} not found.",
+                        command.ReceiverId);
+                }
+                else if (receiver.FcmToken is null)
+                {
+                    logger.LogWarning(
+                        "Push notification skipped: receiver {ReceiverId} has no FCM token registered.",
+                        command.ReceiverId);
+                }
+                else
                 {
                     var preview = command.Text is not null ? command.Text : "Sent an image";
 
-                    await notificationService.SendMessageNotificationAsync(
+                    var result = await notificationService.SendMessageNotificationAsync(
                         receiver.FcmToken,
                         sender.FullName,
                         preview,
                         command.GroupId.ToString(),
                         cancellationToken).ConfigureAwait(false);
+
+                    if (result == NotificationSendResult.TokenRejected)
+                    {
+                        receiver.ClearFcmToken();
+                        await unitOfWork.CompleteAsync(cancellationToken).ConfigureAwait(false);
+                        logger.LogWarning(
+                            "Stale FCM token cleared for receiver {ReceiverId}. They must re-enable notifications.",
+                            command.ReceiverId);
+                    }
+                    else if (result == NotificationSendResult.Sent)
+                    {
+                        logger.LogInformation(
+                            "Push notification sent to receiver {ReceiverId} for group {GroupId}.",
+                            command.ReceiverId, command.GroupId);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Failed to send push notification for message in group {GroupId}.", command.GroupId);
+                logger.LogError(ex, "Unexpected error sending push notification for group {GroupId}.", command.GroupId);
             }
 
             return response;

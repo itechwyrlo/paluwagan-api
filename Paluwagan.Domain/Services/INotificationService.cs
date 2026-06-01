@@ -5,14 +5,14 @@ namespace Paluwagan.Domain.Services
 {
     public interface INotificationService
     {
-        Task SendMessageNotificationAsync(
+        Task<NotificationSendResult> SendMessageNotificationAsync(
             string fcmToken,
             string senderName,
             string messagePreview,
             string groupId,
             CancellationToken cancellationToken = default);
 
-        Task SendPaymentPaidNotificationAsync(
+        Task<NotificationSendResult> SendPaymentPaidNotificationAsync(
             string fcmToken,
             string groupName,
             int round,
