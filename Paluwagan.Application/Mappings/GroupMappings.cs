@@ -33,8 +33,7 @@ namespace Paluwagan.Application.Mappings
                 NumberOfSlots: group.NumberOfSlots,
                 CurrentRound: group.CurrentRound,
                 OrganizerId: group.OrganizerId.ToString(),
-                OrganizerGCashNumber: organizer.GCashNumber,
-                OrganizerMayaNumber: organizer.MayaNumber,
+                OrganizerQrCodeUrl: organizer.QrCodeUrl,
                 StartDate: group.StartDate,
                 Status: group.Status,
                 PaidCount: group.Payments.Count(p => p.Round == group.CurrentRound && p.IsPaid),
@@ -55,8 +54,7 @@ namespace Paluwagan.Application.Mappings
                         FullName: u.FullName,
                         SlotNumber: member.SlotNumber,
                         PayoutOrder: member.PayoutOrder,
-                        GCashNumber: u.GCashNumber,
-                        MayaNumber: u.MayaNumber
+                        QrCodeUrl: u.QrCodeUrl
                     );
                 })
                 .ToList();

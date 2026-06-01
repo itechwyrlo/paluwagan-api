@@ -10,7 +10,6 @@ namespace Paluwagan.Application.DTOs
         string FullName,
         int SlotNumber,
         int PayoutOrder,
-        string? GCashNumber,
-        string? MayaNumber
+        string? QrCodeUrl
     );
 }
