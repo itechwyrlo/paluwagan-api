@@ -12,7 +12,8 @@ namespace Paluwagan.Application.Mappings
                 Email: user.Email ?? string.Empty,
                 Role: user.Role.ToString(),
                 GCashNumber: user.GCashNumber,
-                MayaNumber: user.MayaNumber
+                MayaNumber: user.MayaNumber,
+                QrCodeUrl: user.QrCodeUrl
             );
     }
 }

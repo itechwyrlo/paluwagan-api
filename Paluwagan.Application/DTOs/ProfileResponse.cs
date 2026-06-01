@@ -6,6 +6,7 @@ namespace Paluwagan.Application.DTOs
         string Email,
         string Role,
         string? GCashNumber,
-        string? MayaNumber
+        string? MayaNumber,
+        string? QrCodeUrl
     );
 }

@@ -18,6 +18,7 @@ namespace Paluwagan.Domain.Entities
         public string FullName { get; private set; } = string.Empty;
         public string? GCashNumber { get; private set; }
         public string? MayaNumber { get; private set; }
+        public string? QrCodeUrl { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public UserRole Role { get; private set; }
         public DateTime UpdatedAt { get; private set; }
@@ -58,6 +59,12 @@ namespace Paluwagan.Domain.Entities
         {
             GCashNumber = gcash;
             MayaNumber = maya;
+        }
+
+        public void UpdateQrCode(string? url)
+        {
+            QrCodeUrl = url;
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public void PromoteToOrganizer()
