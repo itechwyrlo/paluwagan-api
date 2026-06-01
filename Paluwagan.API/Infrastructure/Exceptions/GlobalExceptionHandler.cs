@@ -55,7 +55,7 @@ namespace Paluwagan.API.Infrastructure.Exceptions
                 _ => (
                     StatusCodes.Status500InternalServerError,
                     "Server Error",
-                    "An unexpected error occurred.")
+                    exception.Message)
             };
 
             httpContext.Response.StatusCode = statusCode;
