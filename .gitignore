@@ -52,10 +52,18 @@ publish/
 
 ## Environment / Secrets
 *.env
+.env.development
+.env.production
+.env.local
+.env.*.local
 appsettings.Development.json
 appsettings.Local.json
+appsettings.Production.json
 firebase-adminsdk*.json
-*-adminsdk.json
+*-adminsdk*.json
+*.pfx
+*.p12
+*.key
 
 ## OS
 .DS_Store
