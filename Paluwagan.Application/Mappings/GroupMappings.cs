@@ -9,20 +9,20 @@ namespace Paluwagan.Application.Mappings
     public static class GroupMappings
     {
         public static GroupSummaryResponse ToGroupSummary(this Group group, Guid currentUserId) =>
-            new()
-            {
-                Id = group.Id.Value.ToString(),
-                Name = group.Name,
-                ContributionAmount = group.ContributionAmount,
-                Schedule = group.Schedule.ToString(),
-                TotalSlots = group.NumberOfSlots,
-                CurrentRound = group.CurrentRound,
-                OrganizerId = group.OrganizerId.ToString(),
-                MyPaymentStatus = group.Payments
-                    .Any(p => p.MemberId == currentUserId && p.Round == group.CurrentRound && p.IsPaid),
-                PaidCount = group.Payments
-                    .Count(p => p.Round == group.CurrentRound && p.IsPaid)
-            };
+                new()
+                {
+                    Id = group.Id.Value.ToString(),
+                    Name = group.Name,
+                    ContributionAmount = group.ContributionAmount,
+                    Schedule = group.Schedule.ToString(),
+                    TotalSlots = group.NumberOfSlots,
+                    CurrentRound = group.CurrentRound,
+                    OrganizerId = group.OrganizerId.ToString(),
+                    MyPaymentStatus = group.Payments
+                        .Any(p => p.Round == group.CurrentRound && p.IsPaid),
+                    PaidCount = group.Payments
+                        .Count(p => p.Round == group.CurrentRound && p.IsPaid)
+                };
 
         public static GroupDetailResponse ToGroupDetail(this Group group, ApplicationUser organizer) =>
             new(
