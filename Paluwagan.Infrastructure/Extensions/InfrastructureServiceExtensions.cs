@@ -32,19 +32,25 @@ public static class InfrastructureServiceExtensions
         services.AddScoped<IChatNotifier, SignalRChatNotifier>();
         services.AddScoped<INotificationService, FirebaseNotificationService>();
 
+        var credentialJson = Environment.GetEnvironmentVariable("FIREBASE_ADMINSDK_JSON");
         var serviceAccountPath = configuration
             .GetSection(FirebaseOptions.Section)
             .Get<FirebaseOptions>()
             ?.ServiceAccountPath;
 
-        if (!string.IsNullOrWhiteSpace(serviceAccountPath)
-            && File.Exists(serviceAccountPath)
-            && FirebaseApp.DefaultInstance is null)
+        if (FirebaseApp.DefaultInstance is null)
         {
-            FirebaseApp.Create(new AppOptions
-            {
-                Credential = GoogleCredential.FromFile(serviceAccountPath)
-            });
+            GoogleCredential? credential = null;
+
+            if (!string.IsNullOrWhiteSpace(credentialJson))
+                credential = GoogleCredential.FromJson(credentialJson);
+            else if (!string.IsNullOrWhiteSpace(serviceAccountPath) && File.Exists(serviceAccountPath))
+                credential = GoogleCredential.FromFile(serviceAccountPath);
+
+            if (credential is not null)
+                FirebaseApp.Create(new AppOptions { Credential = credential });
+            else
+                Console.Error.WriteLine("[STARTUP WARNING] Firebase credentials not found. Push notifications disabled.");
         }
 
         return services;

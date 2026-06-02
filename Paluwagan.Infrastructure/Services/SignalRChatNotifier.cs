@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
@@ -29,6 +30,35 @@ namespace Paluwagan.Infrastructure.Services
             await hubContext.Clients
                 .Group(groupName)
                 .SendAsync("ReceiveMessage", payload, ct)
+                .ConfigureAwait(false);
+        }
+
+        public async Task NotifyUserAsync(
+            Guid userId,
+            Guid notificationId,
+            string type,
+            string title,
+            string body,
+            string referenceId,
+            DateTimeOffset createdAt,
+            CancellationToken ct)
+        {
+            var groupName = $"user-{userId}";
+
+            var payload = new
+            {
+                id = notificationId,
+                type,
+                title,
+                body,
+                isRead = false,
+                createdAt,
+                referenceId
+            };
+
+            await hubContext.Clients
+                .Group(groupName)
+                .SendAsync("ReceiveNotification", payload, ct)
                 .ConfigureAwait(false);
         }
     }

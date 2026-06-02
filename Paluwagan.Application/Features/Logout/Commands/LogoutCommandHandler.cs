@@ -48,6 +48,7 @@ namespace Paluwagan.Application.Features.Logout.Commands
 
             _cookieService.DeleteRefreshTokenCookie();
 
+            user.ClearFcmToken();
             await _unitOfWork.CompleteAsync(cancellationToken);
         }
     }

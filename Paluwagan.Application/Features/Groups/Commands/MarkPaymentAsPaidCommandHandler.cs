@@ -2,10 +2,13 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using Paluwagan.Application.DTOs;
+using Paluwagan.Application.Features.Notifications.Commands.SaveNotification;
 using Paluwagan.Application.Messaging.Abstractions;
 using Paluwagan.Domain;
+using Paluwagan.Domain.Enums;
 using Paluwagan.Domain.Services;
 using Paluwagan.Domain.ValueObjects;
 using Paluwagan.SharedKernel.Exceptions;
@@ -16,6 +19,8 @@ namespace Paluwagan.Application.Features.Groups.Commands
         IUnitOfWork unitOfWork,
         IUserContextService userContext,
         INotificationService notificationService,
+        IChatNotifier chatNotifier,
+        ISender mediator,
         ILogger<MarkPaymentAsPaidCommandHandler> logger)
         : ICommandHandler<MarkPaymentAsPaidCommand, MarkPaymentAsPaidResponse>
     {
@@ -33,6 +38,36 @@ namespace Paluwagan.Application.Features.Groups.Commands
             await unitOfWork.CompleteAsync(cancellationToken).ConfigureAwait(false);
 
             var payment = group.Payments.First(p => p.MemberId == command.MemberId && p.Round == command.Round);
+
+            var notificationBody = $"Your payment for Round {command.Round} in {group.Name} has been marked as paid.";
+
+            var notificationId = await mediator.Send(
+                new SaveNotificationCommand(
+                    command.MemberId,
+                    NotificationType.PaymentMarkedAsPaid,
+                    "Payment Confirmed",
+                    notificationBody,
+                    command.GroupId.ToString()),
+                cancellationToken).ConfigureAwait(false);
+
+            try
+            {
+                await chatNotifier.NotifyUserAsync(
+                    command.MemberId,
+                    notificationId,
+                    NotificationType.PaymentMarkedAsPaid.ToString(),
+                    "Payment Confirmed",
+                    notificationBody,
+                    command.GroupId.ToString(),
+                    DateTimeOffset.UtcNow,
+                    cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex,
+                    "SignalR ReceiveNotification failed for member {MemberId} in group {GroupId}.",
+                    command.MemberId, command.GroupId);
+            }
 
             try
             {

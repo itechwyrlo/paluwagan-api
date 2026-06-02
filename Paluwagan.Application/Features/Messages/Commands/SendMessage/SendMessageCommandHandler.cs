@@ -1,12 +1,15 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using Paluwagan.Application.DTOs;
+using Paluwagan.Application.Features.Notifications.Commands.SaveNotification;
 using Paluwagan.Application.Mappings;
 using Paluwagan.Application.Messaging.Abstractions;
 using Paluwagan.Domain;
 using Paluwagan.Domain.Entities;
+using Paluwagan.Domain.Enums;
 using Paluwagan.Domain.Services;
 using Paluwagan.Domain.ValueObjects;
 using Paluwagan.SharedKernel.Exceptions;
@@ -18,6 +21,7 @@ namespace Paluwagan.Application.Features.Messages.Commands.SendMessage
         IUserContextService userContext,
         IChatNotifier chatNotifier,
         INotificationService notificationService,
+        ISender mediator,
         ILogger<SendMessageCommandHandler> logger)
         : ICommandHandler<SendMessageCommand, MessageResponse>
     {
@@ -25,7 +29,7 @@ namespace Paluwagan.Application.Features.Messages.Commands.SendMessage
         {
             var senderId = userContext.GetCurrentUserId();
 
-            var sender = await unitOfWork.UserRepository
+            var senderUser = await unitOfWork.UserRepository
                 .GetByIdAsync(senderId)
                 .ConfigureAwait(false)
                 ?? throw new NotFoundException($"User {senderId} was not found.");
@@ -40,9 +44,44 @@ namespace Paluwagan.Application.Features.Messages.Commands.SendMessage
             unitOfWork.MessageRepository.Add(message);
             await unitOfWork.CompleteAsync(cancellationToken).ConfigureAwait(false);
 
-            var response = message.ToMessageResponse(sender.FullName);
+            var response = message.ToMessageResponse(senderUser.FullName);
 
-            await chatNotifier.NotifyGroupAsync(message, sender.FullName, cancellationToken).ConfigureAwait(false);
+            var messagePreview = command.Text is not null ? command.Text : "Sent an image";
+
+            var notificationId = await mediator.Send(
+                new SaveNotificationCommand(
+                    command.ReceiverId,
+                    NotificationType.NewMessage,
+                    senderUser.FullName,
+                    messagePreview,
+                    command.GroupId.ToString()),
+                cancellationToken).ConfigureAwait(false);
+
+            try
+            {
+                await chatNotifier.NotifyUserAsync(
+                    command.ReceiverId,
+                    notificationId,
+                    NotificationType.NewMessage.ToString(),
+                    senderUser.FullName,
+                    messagePreview,
+                    command.GroupId.ToString(),
+                    DateTimeOffset.UtcNow,
+                    cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "SignalR ReceiveNotification failed for receiver {ReceiverId}.", command.ReceiverId);
+            }
+
+            try
+            {
+                await chatNotifier.NotifyGroupAsync(message, senderUser.FullName, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "SignalR ReceiveMessage failed for group {GroupId}.", command.GroupId);
+            }
 
             try
             {
@@ -64,12 +103,10 @@ namespace Paluwagan.Application.Features.Messages.Commands.SendMessage
                 }
                 else
                 {
-                    var preview = command.Text is not null ? command.Text : "Sent an image";
-
                     var result = await notificationService.SendMessageNotificationAsync(
                         receiver.FcmToken,
-                        sender.FullName,
-                        preview,
+                        senderUser.FullName,
+                        messagePreview,
                         command.GroupId.ToString(),
                         cancellationToken).ConfigureAwait(false);
 
