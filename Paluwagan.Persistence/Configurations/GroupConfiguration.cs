@@ -39,6 +39,14 @@ namespace Paluwagan.Persistence.Configurations
 
             builder.Navigation(g => g.Members)
                 .UsePropertyAccessMode(PropertyAccessMode.Field);
+
+            builder.HasMany(g => g.Payments)
+                .WithOne()
+                .HasForeignKey(p => p.GroupId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Navigation(g => g.Payments)
+                .UsePropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }
