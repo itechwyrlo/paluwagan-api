@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Paluwagan.API</RootNamespace>
+    <UserSecretsId>5cc30bff-6d0c-4d85-b1bc-9d62ed5335da</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
